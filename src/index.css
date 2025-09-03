@@ -1,0 +1,238 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
+}
+
+/* Performance optimizations */
+* {
+  /* Optimizar el rendering */
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+}
+
+/* Optimized animations for better performance */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.02);
+  }
+}
+
+@keyframes float-spiral {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-20vh) rotate(360deg) scale(1.1);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-80vh) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg) translateX(100px) rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg) translateX(100px) rotate(-360deg);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px #ff0088,
+      0 0 20px #ca8524,
+      0 0 40px #e22828,
+      0 0 80px #784e63;
+  }
+  50% {
+    text-shadow: 
+      0 0 15px #ff69b4,
+      0 0 30px #ff69b4,
+      0 0 60px #ff69b4,
+      0 0 120px #ffb6c1;
+  }
+}
+
+@keyframes glow-delayed {
+  0%, 100% {
+    text-shadow: 
+      0 0 8px #ff69b4,
+      0 0 16px #ad1561,
+      0 0 32px #280617,
+      0 0 64px #ffb6c1;
+  }
+  50% {
+    text-shadow: 
+      0 0 12px #000000,
+      0 0 24px #ffb6c1,
+      0 0 48px #af0922,
+      0 0 96px #18030e;
+  }
+}
+
+/* Performance-optimized animation classes */
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-float-spiral {
+  animation: float-spiral 12s linear infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.animate-float-up {
+  animation: float-up 10s linear infinite;
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+.animate-spin-slow {
+  animation: spin-slow 25s linear infinite;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+  will-change: text-shadow;
+}
+
+.animate-glow-delayed {
+  animation: glow-delayed 3.5s ease-in-out infinite;
+  animation-delay: 0.5s;
+  will-change: text-shadow;
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-float-spiral,
+  .animate-float-up,
+  .animate-spin-slow,
+  .animate-glow,
+  .animate-glow-delayed {
+    animation: none;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .animate-spin-slow {
+    animation: spin-slow 30s linear infinite;
+  }
+  
+  .animate-float {
+    animation: float 5s ease-in-out infinite;
+  }
+  
+  .animate-float-spiral {
+    animation: float-spiral 15s linear infinite;
+  }
+  
+  /* Reducir efectos de blur en móviles para mejor rendimiento */
+  .blur-3xl {
+    filter: blur(16px);
+  }
+  
+  .blur-2xl {
+    filter: blur(12px);
+  }
+  
+  .blur-xl {
+    filter: blur(8px);
+  }
+}
+
+/* High-performance devices */
+@media (min-width: 1200px) {
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-float-spiral {
+    animation: float-spiral 10s linear infinite;
+  }
+}
+
+/* Low-end device optimizations */
+.low-performance-mode .animate-float {
+  animation-duration: 6s !important;
+}
+
+.low-performance-mode .animate-float-spiral {
+  animation-duration: 18s !important;
+}
+
+.low-performance-mode .animate-float-up {
+  animation-duration: 15s !important;
+}
+
+.low-performance-mode .blur-3xl {
+  filter: blur(20px) !important;
+}
+
+.low-performance-mode .blur-2xl {
+  filter: blur(16px) !important;
+}
+
+.low-performance-mode .blur-xl {
+  filter: blur(12px) !important;
+}
+
+/* Reduced motion mode */
+.reduced-motion .animate-float,
+.reduced-motion .animate-float-spiral,
+.reduced-motion .animate-float-up,
+.reduced-motion .animate-spin-slow,
+.reduced-motion .animate-glow,
+.reduced-motion .animate-glow-delayed {
+  animation: none !important;
+}
+
+/* GPU acceleration for 3D effects */
+.perspective-1000 {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.transform-gpu {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Optimize heart 3D rendering */
+.heart-3d {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  will-change: transform;
+}
